@@ -3,7 +3,7 @@ attribute float a_radius;
 attribute vec2 a_flags;
 
 uniform mat4 u_matrix;
-uniform mat4 u_invMatrix;
+uniform mat4 u_inv_matrix;
 uniform vec2 u_viewport_size;
 uniform float u_camera_to_center_distance;
 
@@ -14,8 +14,8 @@ varying float v_collision;
 
 vec3 toTilePosition(vec2 screenPos) {
     // Shoot a ray towards the ground to reconstruct the depth-value
-    vec4 rayStart = u_invMatrix * vec4(screenPos, -1.0, 1.0);
-    vec4 rayEnd   = u_invMatrix * vec4(screenPos,  1.0, 1.0);
+    vec4 rayStart = u_inv_matrix * vec4(screenPos, -1.0, 1.0);
+    vec4 rayEnd   = u_inv_matrix * vec4(screenPos,  1.0, 1.0);
 
     rayStart.xyz /= rayStart.w;
     rayEnd.xyz   /= rayEnd.w;
